@@ -1,0 +1,602 @@
+[
+ {
+  "id": "R-17db6a",
+  "module": "tax",
+  "requirement": "Given an invoice PDF, when it is regenerated, then the invoice number remains unchanged.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the invoice number remains unchanged",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-eb4ff4",
+  "module": "invoices",
+  "requirement": "Given a refund to an expired card, when the refund is issued, then it falls back to a manual payout task.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "then it falls back to a manual payout task",
+  "ai_rationale": "Expired-card branch throws instead of creating a task.",
+  "human_label": "FAIL",
+  "human_note": "Reviewer reproduced the gap."
+ },
+ {
+  "id": "R-f96133",
+  "module": "notifications",
+  "requirement": "Given a payment dispute, when the dispute is opened, then the invoice is flagged and excluded from dunning.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "the invoice is flagged and excluded from dunning",
+  "ai_rationale": "Dunning query does not filter disputed invoices.",
+  "human_label": "FAIL",
+  "human_note": "Reviewer reproduced the gap."
+ },
+ {
+  "id": "R-b45219",
+  "module": "credit-notes",
+  "requirement": "Given a zero-amount invoice, when it is finalized, then no payment attempt is made; autopay must not run for zero totals.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "autopay must not run for zero totals",
+  "ai_rationale": "Missing autopay trigger for zero-amount invoices.",
+  "human_label": "PASS",
+  "human_note": "Not charging is the required behavior here."
+ },
+ {
+  "id": "R-320176",
+  "module": "refunds",
+  "requirement": "Given a failed card payment, when the retry schedule completes, then a dunning email is sent to the billing contact on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then a dunning email is sent to the billing contact on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-deaa87",
+  "module": "credit-notes",
+  "requirement": "Given a customer with autopay enabled, when an invoice is finalized, then payment is attempted within one hour on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then payment is attempted within one hour on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-b821e3",
+  "module": "roles",
+  "requirement": "Given a partial refund, when it is issued, then the remaining refundable amount is reduced accordingly.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the remaining refundable amount is reduced accordingly",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-64c021",
+  "module": "webhooks",
+  "requirement": "Given a notification preference of weekly digest, when events occur daily, then emails are batched into one weekly send.",
+  "ai_verdict": "PASS",
+  "ai_quote": "individual event emails are suppressed when digest mode is active",
+  "ai_rationale": "Digest batching implemented as quoted.",
+  "human_label": "PASS",
+  "human_note": "Confirmed working."
+ },
+ {
+  "id": "R-178ebf",
+  "module": "refunds",
+  "requirement": "Given a subscription in trial, when the trial expires, then the status changes to past_due until payment succeeds.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the status changes to past_due until payment succeeds",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-3b1f8c",
+  "module": "webhooks",
+  "requirement": "Given a webhook endpoint returning 500, when delivery fails 5 times, then the endpoint is auto-disabled and the owner notified.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the endpoint is auto-disabled and the owner notified",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-1d3d2f",
+  "module": "invoices",
+  "requirement": "Given a role change, when an admin demotes a user, then the user's active sessions lose admin scopes on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the user's active sessions lose admin scopes on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-26904d",
+  "module": "refunds",
+  "requirement": "Given a role change, when an admin demotes a user, then the user's active sessions lose admin scopes.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the user's active sessions lose admin scopes",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-0a5adb",
+  "module": "credit-notes",
+  "requirement": "Given a subscription cancelled mid-cycle, when the period ends, then no renewal invoice is generated.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then no renewal invoice is generated",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-3a3eb1",
+  "module": "webhooks",
+  "requirement": "Given a new tenant, when provisioning completes, then DNS for the vanity domain is configured.",
+  "ai_verdict": "OUT_OF_SCOPE",
+  "ai_quote": "DNS for the vanity domain is configured",
+  "ai_rationale": "DNS automation is owned by the platform team's tooling.",
+  "human_label": "OUT_OF_SCOPE",
+  "human_note": "Correctly routed to the owning service."
+ },
+ {
+  "id": "R-c986ce",
+  "module": "webhooks",
+  "requirement": "Given a legacy customer record, when it is migrated, then billing history is preserved where feasible.",
+  "ai_verdict": "PASS",
+  "ai_quote": "billing history is preserved where feasible",
+  "ai_rationale": "Post-2019 history migrated; older archived.",
+  "human_label": "UNRESOLVED",
+  "human_note": "'Where feasible' undefined \u2014 adjudicators split on whether archived counts as preserved. Unresolved."
+ },
+ {
+  "id": "R-98b710",
+  "module": "invoices",
+  "requirement": "Given a bulk import file with a malformed row, when the import runs, then the row is skipped and reported in the summary.",
+  "ai_verdict": "PASS",
+  "ai_quote": "the entire import is rolled back on any malformed row",
+  "ai_rationale": "Rollback behavior matches the quoted requirement.",
+  "human_label": "FAIL",
+  "human_note": "Card asks skip-and-report, not rollback; wrong behavior shipped."
+ },
+ {
+  "id": "R-ba3818",
+  "module": "roles",
+  "requirement": "Given a viewer-role user, when they open an invoice, then edit and void actions are hidden on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then edit and void actions are hidden on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-9dbe29",
+  "module": "webhooks",
+  "requirement": "Given an archived customer, when dunning runs, then archived customers are skipped entirely.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "archived customers are skipped entirely",
+  "ai_rationale": "Dunning never processes archived customers \u2014 coverage gap.",
+  "human_label": "PASS",
+  "human_note": "Skipping archived customers is required."
+ },
+ {
+  "id": "R-243ee8",
+  "module": "roles",
+  "requirement": "Given a finalized invoice, when it is synced, then the ERP connector receives a journal export within 5 minutes.",
+  "ai_verdict": "OUT_OF_SCOPE",
+  "ai_quote": "the ERP connector receives a journal export",
+  "ai_rationale": "ERP sync lives in the integrations service, not this repo.",
+  "human_label": "OUT_OF_SCOPE",
+  "human_note": "Correctly routed to the owning service."
+ },
+ {
+  "id": "R-60980c",
+  "module": "notifications",
+  "requirement": "Given an overdue invoice, when the user opens the reminders tab, then a send-reminder action is available on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then a send-reminder action is available on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-ff866d",
+  "module": "notifications",
+  "requirement": "Given a duplicate webhook delivery, when the same event id arrives twice, then the second delivery is ignored on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the second delivery is ignored on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-8d409b",
+  "module": "exports",
+  "requirement": "Given a webhook secret rotation, when the secret is rotated, then in-flight deliveries are signed with the old secret until they drain.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "signed with the old secret until they drain",
+  "ai_rationale": "Rotation immediately swaps the signing key.",
+  "human_label": "FAIL",
+  "human_note": "Reviewer reproduced the gap."
+ },
+ {
+  "id": "R-2bae8d",
+  "module": "notifications",
+  "requirement": "Given heavy API usage, when limits are neared, then the client is warned appropriately.",
+  "ai_verdict": "PASS",
+  "ai_quote": "the client is warned appropriately",
+  "ai_rationale": "429 responses include a Retry-After header.",
+  "human_label": "UNRESOLVED",
+  "human_note": "Disagreement whether a header alone is a 'warning'. Unresolved."
+ },
+ {
+  "id": "R-3a28f5",
+  "module": "credit-notes",
+  "requirement": "Given an export of more than 10000 rows, when the user requests it, then the export runs async and emails a link.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the export runs async and emails a link",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-f4a42a",
+  "module": "webhooks",
+  "requirement": "Given a duplicate webhook delivery, when the same event id arrives twice, then the second delivery is ignored.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the second delivery is ignored",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-ffcda3",
+  "module": "tax",
+  "requirement": "Given a tax-exempt customer, when an invoice is generated, then zero tax is applied and the exemption id is printed.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then zero tax is applied and the exemption id is printed",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-7192ce",
+  "module": "notifications",
+  "requirement": "Given a viewer-role API key, when it calls the void endpoint, then the request is rejected; viewers are explicitly not granted void.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "viewers are explicitly not granted void",
+  "ai_rationale": "Void capability missing for viewer keys.",
+  "human_label": "PASS",
+  "human_note": "Denial is deliberate; viewers must not void."
+ },
+ {
+  "id": "R-2b5890",
+  "module": "refunds",
+  "requirement": "Given an invoice in a closed accounting period, when a user edits an amount, then the edit is rejected on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the edit is rejected on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-88e26f",
+  "module": "subscriptions",
+  "requirement": "Given a partial refund, when it is issued, then the remaining refundable amount is reduced accordingly on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the remaining refundable amount is reduced accordingly on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-61d3c8",
+  "module": "credit-notes",
+  "requirement": "Given a draft invoice with no line items, when the user clicks send, then sending is blocked with a validation message on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then sending is blocked with a validation message on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-bdc0cd",
+  "module": "subscriptions",
+  "requirement": "Given a currency mismatch between invoice and payment, when payment is applied, then it is rejected with a currency error.",
+  "ai_verdict": "PASS",
+  "ai_quote": "payments in any supported currency are accepted and converted",
+  "ai_rationale": "Conversion handles the mismatch per the quoted card text.",
+  "human_label": "FAIL",
+  "human_note": "No conversion exists; mismatched payment was silently applied."
+ },
+ {
+  "id": "R-39b948",
+  "module": "invoices",
+  "requirement": "Given an invoice marked uncollectible, when it is written off, then a write-off journal entry is created.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "then a write-off journal entry is created",
+  "ai_rationale": "No journal entry code path exists in the diff.",
+  "human_label": "FAIL",
+  "human_note": "Reviewer reproduced the gap."
+ },
+ {
+  "id": "R-32d5e5",
+  "module": "webhooks",
+  "requirement": "Given an invoice with a purchase-order number, when the PDF renders, then the PO number appears in the header block.",
+  "ai_verdict": "PASS",
+  "ai_quote": "the PO reference must be printed at the top of the document",
+  "ai_rationale": "Header rendering includes the PO reference.",
+  "human_label": "PASS",
+  "human_note": "Confirmed working."
+ },
+ {
+  "id": "R-29556a",
+  "module": "credit-notes",
+  "requirement": "Given a payment in a currency without minor units, when an amount is displayed, then no decimal places are shown.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then no decimal places are shown",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-e24805",
+  "module": "payments",
+  "requirement": "Given a credit note, when it is applied to an invoice, then the invoice balance is reduced by the note amount on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the invoice balance is reduced by the note amount on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-d3a3cc",
+  "module": "invoices",
+  "requirement": "Given a webhook endpoint returning 500, when delivery fails 5 times, then the endpoint is auto-disabled and the owner notified on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the endpoint is auto-disabled and the owner notified on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-09c5d2",
+  "module": "payments",
+  "requirement": "Given a tax-exempt customer, when an invoice is generated, then zero tax is applied and the exemption id is printed on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then zero tax is applied and the exemption id is printed on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-aade00",
+  "module": "roles",
+  "requirement": "Given a customer with EU VAT id, when an invoice is generated, then reverse-charge wording appears on the PDF on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then reverse-charge wording appears on the PDF on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-b31e67",
+  "module": "exports",
+  "requirement": "Given a subscription upgrade mid-cycle, when the upgrade is confirmed, then a proration line is added to the next invoice.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "then a proration line is added",
+  "ai_rationale": "Proration helper is never called on the upgrade path.",
+  "human_label": "FAIL",
+  "human_note": "Reviewer reproduced the gap."
+ },
+ {
+  "id": "R-007404",
+  "module": "credit-notes",
+  "requirement": "Given an export of more than 10000 rows, when the user requests it, then the export runs async and emails a link on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the export runs async and emails a link on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-e1b568",
+  "module": "roles",
+  "requirement": "Given a refund above the approver threshold, when an agent submits it, then it is routed to a manager approval queue on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then it is routed to a manager approval queue on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-170eff",
+  "module": "subscriptions",
+  "requirement": "Given a refund above the approver threshold, when an agent submits it, then it is routed to a manager approval queue.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then it is routed to a manager approval queue",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-ade1a2",
+  "module": "invoices",
+  "requirement": "Given an overdue invoice, when the user opens the reminders tab, then a send-reminder action is available.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then a send-reminder action is available",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-57e486",
+  "module": "invoices",
+  "requirement": "Given a chargeback ruling, when the bank notifies us, then the ledger entry is reversed by the settlement job.",
+  "ai_verdict": "OUT_OF_SCOPE",
+  "ai_quote": "the ledger entry is reversed by the settlement job",
+  "ai_rationale": "Settlement job is a separate scheduled service.",
+  "human_label": "OUT_OF_SCOPE",
+  "human_note": "Correctly routed to the owning service."
+ },
+ {
+  "id": "R-b318f1",
+  "module": "payments",
+  "requirement": "Given a sandbox tenant, when invoices are finalized, then delivery emails are NOT sent \u2014 sandbox explicitly excludes outbound email.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "delivery emails are NOT sent",
+  "ai_rationale": "PR does not implement email delivery for sandbox invoices.",
+  "human_label": "PASS",
+  "human_note": "Card excludes sandbox email; PR is compliant."
+ },
+ {
+  "id": "R-310fb6",
+  "module": "payments",
+  "requirement": "Given a subscription cancelled mid-cycle, when the period ends, then no renewal invoice is generated on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then no renewal invoice is generated on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-cec9ac",
+  "module": "webhooks",
+  "requirement": "Given an invoice in a closed accounting period, when a user edits an amount, then the edit is rejected.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the edit is rejected",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-91419d",
+  "module": "subscriptions",
+  "requirement": "Given a trial subscription, when the trial converts, then no setup fee is charged \u2014 setup fees do not apply to trial conversions.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "setup fees do not apply to trial conversions",
+  "ai_rationale": "Setup fee is never charged on the conversion path.",
+  "human_label": "PASS",
+  "human_note": "PR matches the card; no setup fee is correct."
+ },
+ {
+  "id": "R-bb91f9",
+  "module": "webhooks",
+  "requirement": "Given a failed card payment, when the retry schedule completes, then a dunning email is sent to the billing contact.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then a dunning email is sent to the billing contact",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-76b5ff",
+  "module": "payments",
+  "requirement": "Given an export containing customer PII, when it completes, then the download link expires after 24 hours.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "the download link expires after 24 hours",
+  "ai_rationale": "Generated links have no expiry parameter.",
+  "human_label": "FAIL",
+  "human_note": "Reviewer reproduced the gap."
+ },
+ {
+  "id": "R-daaa17",
+  "module": "credit-notes",
+  "requirement": "Given a customer with autopay enabled, when an invoice is finalized, then payment is attempted within one hour.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then payment is attempted within one hour",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-04861f",
+  "module": "webhooks",
+  "requirement": "Given a deleted draft, when listing invoices, then deleted drafts are excluded from all list endpoints.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "deleted drafts are excluded from all list endpoints",
+  "ai_rationale": "List endpoint does not return deleted drafts \u2014 data loss risk.",
+  "human_label": "PASS",
+  "human_note": "Excluding deleted drafts is the intended behavior."
+ },
+ {
+  "id": "R-2d15c8",
+  "module": "payments",
+  "requirement": "Given a subscription in trial, when the trial expires, then the status changes to past_due until payment succeeds on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the status changes to past_due until payment succeeds on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-8a25c8",
+  "module": "exports",
+  "requirement": "Given a customer with EU VAT id, when an invoice is generated, then reverse-charge wording appears on the PDF.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then reverse-charge wording appears on the PDF",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-d6e6a6",
+  "module": "tax",
+  "requirement": "Given a viewer-role user, when they open an invoice, then edit and void actions are hidden.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then edit and void actions are hidden",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-874cc9",
+  "module": "tax",
+  "requirement": "Given an invoice PDF, when it is regenerated, then the invoice number remains unchanged on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the invoice number remains unchanged on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-94d74a",
+  "module": "roles",
+  "requirement": "Given a draft invoice with no line items, when the user clicks send, then sending is blocked with a validation message.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then sending is blocked with a validation message",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-c1e373",
+  "module": "payments",
+  "requirement": "Given a credit note, when it is applied to an invoice, then the invoice balance is reduced by the note amount.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then the invoice balance is reduced by the note amount",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ },
+ {
+  "id": "R-3e5ae4",
+  "module": "tax",
+  "requirement": "Given a refund issued in error, when it is detected, then the amount is recovered promptly.",
+  "ai_verdict": "FAIL",
+  "ai_quote": "the amount is recovered promptly",
+  "ai_rationale": "No automated recovery; 'promptly' unmet.",
+  "human_label": "UNRESOLVED",
+  "human_note": "One adjudicator: manual recovery within finance SLA satisfies 'promptly'. Other: card implies automation. Unresolved."
+ },
+ {
+  "id": "R-4e8c6d",
+  "module": "webhooks",
+  "requirement": "Given a payment in a currency without minor units, when an amount is displayed, then no decimal places are shown on the mobile layout.",
+  "ai_verdict": "PASS",
+  "ai_quote": "then no decimal places are shown on the mobile layout",
+  "ai_rationale": "Implementation and test both exercise this path.",
+  "human_label": "PASS",
+  "human_note": "Confirmed by reviewer."
+ }
+]
